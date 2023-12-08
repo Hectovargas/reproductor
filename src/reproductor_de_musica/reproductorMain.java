@@ -300,10 +300,14 @@ public class reproductorMain extends javax.swing.JFrame {
 
     private void anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorActionPerformed
         Logger.getLogger("javazoom.jlgui.basicplayer").setLevel(Level.OFF);
-        if (actual == null) {
+         if (actual == null) {
             return;
         }
 
+                if (actual.anterior == null) {
+                    return;
+                }
+                actual = actual.anterior;
         x = 0;
         playActionPerformed(evt);
     }//GEN-LAST:event_anteriorActionPerformed
