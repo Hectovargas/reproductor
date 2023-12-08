@@ -11,7 +11,7 @@ public class Zplayer implements BasicPlayerListener {
     BasicPlayer player = new BasicPlayer();
     BasicController control = (BasicController) player;
     reproductorMain vp;
-
+    
     public Zplayer(reproductorMain v) {
         player.addBasicPlayerListener(this);
         vp = v;
