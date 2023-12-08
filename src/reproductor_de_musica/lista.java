@@ -2,8 +2,8 @@ package reproductor_de_musica;
 
 public class lista {
 
-    nodo first;
-    nodo last;
+    musica first;
+    musica last;
     int tam;
 
     public lista() {
@@ -22,7 +22,7 @@ public class lista {
     }
 
     public void insertar(String nom, String dir) {
-        nodo nuevo = new nodo(nom, dir);
+        musica nuevo = new musica(nom, dir);
         if (IsEmpety()) {
             first = nuevo;
             last = nuevo;
@@ -34,8 +34,8 @@ public class lista {
         tam++;
     }
 
-    public int index(nodo b) {
-        nodo aux = first;
+    public int index(musica b) {
+        musica aux = first;
         int con = 0;
 
         while (aux != null) {
@@ -48,13 +48,13 @@ public class lista {
         return -1;
     }
     
-    public nodo get_cancion(int index){
+    public musica get_cancion(int index){
         if (index < 0 || index >= tam) {
             return null;
         }
         
         int n = 0;
-        nodo aux = first;
+        musica aux = first;
         while (n != index) {            
             aux = aux.siguiente;
             n++;
@@ -63,7 +63,7 @@ public class lista {
         return aux;
     }
 
-    public void borrar(nodo b) {
+    public void borrar(musica b) {
         if (b == first) {
             if (tam == 1) {
                 first = null;
@@ -86,7 +86,7 @@ public class lista {
     }
     
     public boolean buscar(String nombre, String ruta){
-        nodo aux = first;
+        musica aux = first;
 
         while (aux != null) {
             if (aux.nombre.equals(nombre) && aux.direccion.equals(ruta)) {

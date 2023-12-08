@@ -6,13 +6,13 @@ import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerEvent;
 import javazoom.jlgui.basicplayer.BasicPlayerListener;
 
-public class Zplayer implements BasicPlayerListener {
+public class archivomusical implements BasicPlayerListener {
 
     BasicPlayer player = new BasicPlayer();
     BasicController control = (BasicController) player;
     reproductorMain vp;
     
-    public Zplayer(reproductorMain v) {
+    public archivomusical(reproductorMain v) {
         player.addBasicPlayerListener(this);
         vp = v;
     }

@@ -1,12 +1,13 @@
 package reproductor_de_musica;
 
-public class nodo {
+public class musica {
     
     String nombre, direccion;
     
-    nodo siguiente, anterior;
+    musica siguiente;
+    musica anterior;
 
-    public nodo(String nombre, String direccion) {
+    public musica(String nombre, String direccion) {
         this.nombre = nombre;
         this.direccion = direccion;
     }

@@ -4,15 +4,12 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -39,8 +36,8 @@ public class reproductorMain extends javax.swing.JFrame {
     private AudioFile audioFile;
     private File mp3File;
     private lista list = new lista();
-    private nodo actual = null;
-    private Zplayer player;
+    private musica actual = null;
+    private archivomusical player;
     private Short x = 0;
     private String artist;
     private String album;
@@ -72,7 +69,7 @@ public class reproductorMain extends javax.swing.JFrame {
             }
         });
          nombre_can.setEditable(false);
-        player = new Zplayer(this);
+        player = new archivomusical(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -474,7 +471,6 @@ public class reproductorMain extends javax.swing.JFrame {
 
             return artist+" - "+album+" - "+tiempo;
     }
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
