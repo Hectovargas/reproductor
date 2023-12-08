@@ -61,7 +61,7 @@ public class reproductorMain extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent evt) {
                 JList lista = (JList) evt.getSource();
-                if (evt.getClickCount() == 2) {
+                if (evt.getClickCount() == 1) {
                     int index = lista.locationToIndex(evt.getPoint());
                     if (index != -1) {
                         actual = list.get_cancion(index);
@@ -75,67 +75,6 @@ public class reproductorMain extends javax.swing.JFrame {
         player = new Zplayer(this);
     }
 
-    public void cargarLista(String ruta) {
-        try {
-            FileInputStream fis = new FileInputStream(new File(ruta));
-            BufferedReader tec = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
-            String input[];
-            tec.readLine();
-
-            while (tec.ready()) {
-                input = tec.readLine().split("<");
-                System.out.println(input[0] + " , " + input[1]);
-                list.insertar(input[0], input[1]);
-                lista_modelo.addElement(input[0]);
-            }
-         
-        } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error\nal cargar la lista!!!", "alerta", 1);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error!!!", "alerta", 1);
-        }
-        lista_can.setModel(lista_modelo);
-    }
-
-    public void guardarLista(String dir) {
-        try {
-            BufferedWriter tec = new BufferedWriter(new FileWriter(dir));
-            tec.write("\r\n");
-
-            nodo aux = list.first;
-            while (aux != null) {
-                tec.append(aux.nombre + "<" + aux.direccion + "\r\n");
-                aux = aux.siguiente;
-            }
-
-            tec.close();
-            
-        } catch (Exception e) {
-        }
-    }
-
-    public String crearArchivoLista() {
-        String n = JOptionPane.showInputDialog("digite el nombre de la lista");
-        if (n == null || n.isEmpty()) {
-            return null;
-        }
-        
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int seleccion = chooser.showOpenDialog(this);
-        File ruta;
-
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            ruta = chooser.getSelectedFile();
-        } else {
-            return null;
-        }
-        File save = new File(ruta.getAbsolutePath() + "\\" + n + ".lis");
-        if (save.exists()) {
-            save.delete();
-        }
-        return save.getAbsolutePath();
-    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -158,7 +97,6 @@ public class reproductorMain extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         MarcoFoto = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
 
@@ -270,9 +208,6 @@ public class reproductorMain extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 270, -1));
-
-        jLabel4.setText("Doble clic para seleccionar");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 150, -1));
         getContentPane().add(MarcoFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, 150, 100));
         setJMenuBar(jMenuBar1);
 
@@ -309,11 +244,9 @@ public class reproductorMain extends javax.swing.JFrame {
                         repetidos = true;
                         continue;
                     }
-                    String names = file.getName()+ponerdatos(file);
-                    list.insertar(names, file.getPath());
-                    System.out.println(names);
+                    list.insertar(file.getName(), file.getPath());
                     System.out.println(file.getPath());
-                    lista_modelo.addElement(file.getName());
+                    lista_modelo.addElement(file.getName()+" - "+ponerdatos(file));
                     lista_can.setModel(lista_modelo);
                     
                 } catch (CannotReadException ex) {
@@ -583,7 +516,6 @@ public class reproductorMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuBar jMenuBar1;
